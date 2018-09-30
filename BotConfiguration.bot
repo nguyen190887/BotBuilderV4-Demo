@@ -1,0 +1,16 @@
+{
+    "name": "BotBuilderv4-Demo",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "endpoint": "http://localhost:3978/api/messages",
+            "name": "development",
+            "id": "186"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "/Users/tringocnguyen/working/botbuilderv4/BotConfiguration.bot",
+    "overrides": null
+}
