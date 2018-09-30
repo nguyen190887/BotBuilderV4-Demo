@@ -12,19 +12,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Builder.Integration;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace botbuilderv4
 {
     public class Startup
     {
         private ILoggerFactory _loggerFactory;
-
         private bool _isProduction;
-
         public IConfiguration Configuration { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public Startup(IHostingEnvironment env)
         {
             _isProduction = env.IsProduction();
@@ -88,10 +85,15 @@ namespace botbuilderv4
         {
             _loggerFactory = loggerFactory;
 
-            // if (env.IsDevelopment())
-            // {
-            //     app.UseDeveloperExceptionPage();
-            // }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseDefaultFiles()
                 .UseStaticFiles()

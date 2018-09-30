@@ -19,6 +19,7 @@ namespace botbuilderv4
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
                 .UseStartup<Startup>();
     }
 }
